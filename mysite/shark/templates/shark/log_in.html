@@ -1,0 +1,14 @@
+{% extends "shark/base.html" %}
+
+{% block title %}
+    StarShark: Submitting
+{% endblock %}
+
+{% block content %}
+    <form action="log_in.html" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}
+

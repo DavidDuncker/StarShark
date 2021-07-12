@@ -1,0 +1,13 @@
+{% extends "shark/base.html" %}
+
+{% block title %}
+    StarShark: Submitting
+{% endblock %}
+
+{% block content %}
+    {{ request }}
+    {% for key in request.keys %}
+        {{ key }} =>
+    {% endfor %}
+{% endblock %}
+

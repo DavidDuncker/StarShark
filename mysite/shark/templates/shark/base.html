@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>StarShark</title>
+    {% endblock %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            alert("Testing");
+            $(".text.selection").click(function(){
+                alert("Testing2");
+                $("#text_submission").slideDown();
+                $("#link_submission").slideUp();
+                $("#media_submission").slideUp();
+            });
+
+            $(".link.selection").click(function(){
+                $("#text_submission").slideUp();
+                $("#link_submission").slideDown();
+                $("#media_submission").slideUp();
+            });
+
+            $(".media.selection").click(function(){
+                $("#text_submission").slideUp();
+                $("#link_submission").slideUp();
+                $("#media_submission").slideDown();
+            });
+        });
+
+    </script>
+    <style>
+        header {
+            height: 50px;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background-color: #FFAAAA;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 150px;
+            top: 50px;
+            left: 0;
+            background-color: #AAFFAA;
+
+        }
+
+        main {
+            background-color: #DDDDFF;
+            padding-left: 175px;
+            padding-top: 60px;
+            bottom: 0px;
+
+
+        }
+
+        article {
+            padding-top: 5px;
+            padding-bottom: 5px;
+}
+
+        .submission {
+            background-color: #000000;
+            padding-top: 5px;
+            padding-bottom: 5px;
+
+        }
+
+        .user-interaction {
+            background-color: #BBBBFF;
+            padding-top: 5px;
+            padding-bottom: 5px;
+
+        }
+
+        .community-interaction {
+            background-color: #9999CC;
+            padding-top: 5px;
+            padding-bottom: 5px;
+
+        }
+
+        footer {
+            height: 50px;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            background-color: #FFFFAA;
+
+        }
+
+        .no-scroll {
+            position: fixed;
+        }
+    </style>
+</head>
+<body>
+    <header class="header no-scroll" bgcolor="blue">
+        {% block header %}
+        Profile Pic | {% if request.user.id %}<a href="{% url 'profile' request.user.id %}">{{ request.user.username }}</a>{% else %} Anonymous {% endif %} | Handle | Account Creation Date | <a href="/sign_up.html">Sign up</a> | <a href="log_in.html">Log in</a>
+        {% endblock %}
+    </header>
+
+    <div class="sidebar no-scroll" bgcolor="red">
+        {% block sidebar %}
+        Show AnonCave<br>
+        <a href="/">Show local content</a><br>
+        Show pictures<br>
+        Show videos<br><br><br>
+        <a href="submit.html">Submit</a><br>
+        {% endblock %}
+    </div>
+
+    <main>
+        {% block content %}
+
+        {% for squeak in Squeal %}
+        <article>
+            <div class="submission>">ID: {{ squeak.id }} | Author ID: <a href="/profiles/{{ tooth.author.id }}">{{ squeak.author.username }}</a>  | Reply ID:  |
+                Type: {{ squeak.type }} | URL: {{ squeak.url }} | File URL: {{ squeak.file_url }} |
+            Text: {{ squeak.text }} | Reply | Like/Love/Hate/Dismiss as inappropriate</div>
+            <div class="user-interaction">Like | Love | Hate | Dismiss as inappropriate | Reply</div>
+            <div class="community-interaction">X1 Likes | X2 Loves | X3 Hates | X4 Dismiss as inappropriate<br>
+            Tags: Tag1 Tag2 Tag3
+            Communities: Shark1 Shark2 Shark3</div>
+        </article>
+        {% endfor %}
+        <article> Reaction Nose | Reaction bar | Content | Author | Post Datetime | Reaction Tails</article><br><br><br>
+        <article> Reaction Nose | Reaction bar | Content | Author | Post Datetime | Reaction Tails</article><br><br><br>
+        {% endblock %}
+    </main>
+
+    <footer class="footer no-scroll" bgcolor="yellow">
+        {% block footer %}
+        About this site...
+        {% endblock %}
+    </footer>
+</body>
+</html>

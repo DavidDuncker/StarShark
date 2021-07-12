@@ -1,0 +1,32 @@
+{% extends "shark/base.html" %}
+
+{% block title %}
+    StarShark: Submitting
+{% endblock %}
+
+{% block content %}
+    <div class="Submission">
+        <div class="selection">
+            <div class="text selection">Text Submission</div>
+            <div class="link selection">Link Submission</div>
+            <div class="media selection">Media Submission</div>
+        </div>
+        <form id="text_submission" action="submit.html" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            Text: {{ form.text }}<br>
+            <input type="submit" value="Submit">
+        </form>
+        <form id="link_submission" action="submit.html" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            Text: {{ form.text }}<br>
+            <input type="submit" value="Submit">
+        </form>
+        <form id="media_submission" action="submit.html" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            Text: {{ form.text }}<br>
+            <input type="submit" value="Submit">
+        </form>
+
+    </div>
+{% endblock %}
+
